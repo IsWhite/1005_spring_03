@@ -36,7 +36,9 @@
         <action name="login"
                 class="mainAction"
                 method="login">
-            <result name="success">/home.jsp</result>
+            <!--登录成功后步直接进入主页,而是先跳转到获取学生列表的动作方法得到学生数据,然后再携带数据到主页-->
+            <result name="success"
+                    type="redirectAction">findStudent</result>
             <result name="login" type="redirect">/login.jsp</result>
         </action>
 
@@ -48,6 +50,13 @@
             <result name="success" type="json">
                 <param name="root">studentList</param>
             </result>
+        </action>
+
+        <!--分页查询学生列表-->
+        <action name="findStudent"
+                class="mainAction"
+                method="findStudent">
+            <result name="success">/homenew.jsp</result>
         </action>
 
     </package>

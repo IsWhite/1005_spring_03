@@ -41,6 +41,14 @@
     </tr>
     </thead>
     <tbody id="content"></tbody>
+</table>
+<div>
+    <span>第1/3页</span>
+    <a href="">[首页]</a>
+    <a href="">[上一页]</a>
+    <a href="">[下一页]</a>
+    <a href="">[尾页]</a>
+</div>
     <%--引入jquery--%>
     <script src="js/jquery-3.2.1.js"
             type="text/javascript"></script>
@@ -125,6 +133,6 @@
 
 
     </script>
-</table>
+
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.ssh.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.ssh.PageBean.PageBean;
 import com.ssh.domain.Clazz;
 import com.ssh.domain.Student;
 import com.ssh.service.ClazzService;
@@ -72,6 +73,34 @@ public class MainAction extends ActionSupport implements ModelDriven<Student> {
         studentList = studentService.select(student);
 
         return SUCCESS;
+    }
+
+    /*获取学生列表 加入分页查询*/
+    private  int pageNum=1;//当前页面
+    private  int pageSize=3;//每页显示的条数
+    public  String findStudent(){
+        /*分页查询*/
+        PageBean<Student> pageBean=studentService.selectAll(student,pageNum,pageSize);
+        /*存储pageBean对象 用于前端页面的显示*/
+        Map<String,Object> session=ActionContext.getContext().getSession();
+        session.put("pageBean",pageBean);
+        return SUCCESS;
+    }
+
+    public int getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
     }
 
     public List<Clazz> getClazzes() {

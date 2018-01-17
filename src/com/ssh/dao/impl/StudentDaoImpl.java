@@ -1,10 +1,12 @@
 package com.ssh.dao.impl;
 
+import com.ssh.PageBean.PagerHibernateCallback;
 import com.ssh.dao.StudentDao;
 import com.ssh.domain.Clazz;
 import com.ssh.domain.Student;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import sun.jvm.hotspot.debugger.Page;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -57,9 +59,50 @@ public class StudentDaoImpl implements StudentDao {
     *@sql    条件语句,不需要select *的,直接从from开始
     * args   条件语句中对应的参数列表
     * return 返回符合条件的集合对象
+    *
     * */
     @Override
     public List<Student> select(String sql, Object[] args) {
         return (List<Student>) hibernateTemplate.find(sql,args);
+    }
+
+    /*返回符合条件的总条数
+    * @sql  查询语句
+    * @args 查询语句对应的参数列表
+    * @startIndex 查询的索引
+    * @pageSize 查询的条数,即
+    * */
+    @Override
+    public int getTotalRecord(String sql, Object[] args) {
+
+        String hql="select count(sid) from Student where 1=1 "+sql; //count 查列的条数
+        hibernateTemplate.find(hql,args);
+        /*返回符合条件的条数集合*/
+        List<Long>  find = (List<Long>) hibernateTemplate.find(hql,args);
+
+        if (find!=null&&find.size()>0){
+            /*得到总条数并返回*/
+            return find.get(0).intValue();//get(0)返回的总条数,取int类型的value值
+        }
+
+        return 0;
+    }
+
+
+    /**
+     * 带分页的条件查询
+     * @param sql 查询语句
+     * @param args 查询语句对应的参数列表
+     * @param startIndex 查询的索引
+     * @param pageSize 查询的条数,即每页显示的条数
+     * @return
+     */
+    @Override
+    public List<Student> selectAll(String sql, Object[] args, int startIndex, int pageSize) {
+       /*将传递过来的查询语句进行拼接*/
+        String hql ="from Student where 1=1 "+sql;
+        return   hibernateTemplate.execute(
+                new PagerHibernateCallback<>(hql,args,startIndex,pageSize));
+
     }
 }

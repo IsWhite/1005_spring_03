@@ -1,5 +1,6 @@
 package com.ssh.service;
 
+import com.ssh.PageBean.PageBean;
 import com.ssh.domain.Student;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface StudentService {
     List<Student> selectAll();
 
     List<Student> select(Student student);//操作用对象实现
+    PageBean<Student> selectAll(Student student,int pageNum,int pageSize);
 }
