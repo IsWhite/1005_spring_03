@@ -52,4 +52,14 @@ public class StudentDaoImpl implements StudentDao {
     public List<Student> selectAll() {
         return hibernateTemplate.loadAll(Student.class);
     }
+
+    /*进行条件查询的基础方法\
+    *@sql    条件语句,不需要select *的,直接从from开始
+    * args   条件语句中对应的参数列表
+    * return 返回符合条件的集合对象
+    * */
+    @Override
+    public List<Student> select(String sql, Object[] args) {
+        return (List<Student>) hibernateTemplate.find(sql,args);
+    }
 }

@@ -13,4 +13,6 @@ public interface StudentService {
     Student login(Student student);
 
     List<Student> selectAll();
+
+    List<Student> select(Student student);//操作用对象实现
 }

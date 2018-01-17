@@ -23,11 +23,10 @@
 <%--获取域 需要加#--%>
 <h1>欢迎<s:property value="#session.student.sname"/>登录本系统</h1>
 <p>
-<form action="register.action" method="post">
     班级<select id="clazz" name="clazzId">
-    <option value="-1">--请选择--</option>
+    <option value="">--请选择--</option>
 </select>
-</form>
+
 姓名:<input type="text" name="sname">
 <button id="query">查询</button>
 </p>
@@ -105,7 +104,7 @@
             selectStudent();
 
 
-            function getClazzAll2() {
+            function getClazzAll() {
                 $.ajax({
                     url: "getClazzAll.action",
                     dataType: "json",
@@ -121,7 +120,7 @@
                 })
             }
 
-            getClazzAll2();
+            getClazzAll();
         })
 
 

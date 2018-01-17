@@ -14,4 +14,6 @@ public interface StudentDao {
     Student selectByNameAndPsw(Student student);
 
     List<Student> selectAll();
+
+    List<Student> select(String sql,Object[] args);
 }

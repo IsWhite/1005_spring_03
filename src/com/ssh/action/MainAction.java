@@ -68,7 +68,8 @@ public class MainAction extends ActionSupport implements ModelDriven<Student> {
 
     /*获取所有学生列表集合*/
     public String selectStudentList(){
-        studentList = studentService.selectAll();
+        System.out.println("页面请求"+student);
+        studentList = studentService.select(student);
 
         return SUCCESS;
     }
