@@ -1,0 +1,18 @@
+hibernateTemplate的方法的参数
+
+*方法:<T> T get(Class<T> entityClass, Serializable id)(实体类class,序列化id)
+  Clazz clazz = hibernateTemplate.get(Clazz.class, cid);
+entity 译 实体类,Serializable 译:序列化
+*方法:Serializable save(final Object entity) (实体类对象)
+  Integer key = (Integer) hibernateTemplate.save(student);
+*方法:List<?> find(final String queryString, final Object... values)(查询字符串,对象的值-查询的值)
+  String sql = "from Student where sname= ? and spassword= ? ";
+  Object[] args = {student.getSname(), student.getSpassword()};
+  List<Student> students= (List<Student>) hibernateTemplate.find(sql,args);
+*方法:<T> List<T> loadAll(final Class<T> entityClass)(实体类,返回值类型是List)
+
+
+
+
+
+*方法:static int parseInt(String s)(字符串,返回值类型时int)

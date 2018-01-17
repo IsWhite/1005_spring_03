@@ -1,0 +1,23 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.ssh.domain.Student">
+        <id name="sid">
+            <generator class="native"/>
+        </id>
+        <property name="sname"/>
+        <property name="spassword"/>
+
+        <!--cascade级联(保存和更改),设置的是单方(后方)-->
+        <many-to-one name="clazz"
+                     class="com.ssh.domain.Clazz"
+                     column="clazzId"
+                     cascade="save-update"
+                     lazy="false"/>
+
+    </class>
+
+
+
+</hibernate-mapping>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <!--将struts2的动作类创建交给spring完成-->
+    <constant name="struts.objectFactory" value="spring"/>
+    <!--开启开发者模式,帮助错误的查询-->
+    <constant name="struts.devMode" value="true"/>
+    <package name="main" extends="json-default">
+        <action name="getClazzAll"
+                class="mainAction"
+                method="getClazzAll">
+            <!--返回班级的json-->
+            <result name="success" type="json">
+                <param name="root">clazzes</param>
+                <!--指定json格式化的属性-->
+                <!--[\d+]通配符 代表不确定的下标,后加的\是转译符对[ ,对. 的转译-->
+                <param name="includeProperties">
+                    \[\d+\]\.cid,\[\d+\]\.cname
+                </param>
+            </result>
+        </action>
+
+        <!--注册  注册成功之后,重定向会登录页面redirect-->
+        <action name="register"
+                class="mainAction"
+                method="register">
+            <result name="success"
+                    type="redirect">/login.jsp</result>
+        </action>
+
+        <!--登录-->
+        <action name="login"
+                class="mainAction"
+                method="login">
+            <result name="success">/home.jsp</result>
+            <result name="login" type="redirect">/login.jsp</result>
+        </action>
+
+        <!--查询学生列表-->
+        <action name="selectStudent"
+                class="mainAction"
+                method="selectStudentList">
+            <!--返回学生类型的json数组-->
+            <result name="success" type="json">
+                <param name="root">studentList</param>
+            </result>
+        </action>
+
+    </package>
+
+</struts>
