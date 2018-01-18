@@ -1,0 +1,11 @@
+ 返回值类型  方法  参数
+ 方法: Query createQuery(String var1);
+Query query = session.createQuery(hql);  session调用
+
+  query.setParameter(i, params[i]); 设定参数
+  query.setFirstResult(startIndex); 设定索引
+  query.setMaxResults(pageSize);    设定最大页数
+
+  query.list();
+
+

@@ -1,0 +1,8 @@
+
+ 方法:ActionContext.getContext().getSession()  getSession(Map<String, Object>)参数
+ Map<String, Object> sessions = ActionContext.getContext().getSession();
+
+ 方法:V put(K key, V value);
+ sessions.put("student", stu); session保存: K,V (名,对象)
+
+
