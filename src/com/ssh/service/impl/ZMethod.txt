@@ -4,3 +4,5 @@ StringUtils.isBlank(student.getSname())判断条件
 args.add("%" + student.getSname() + "%"); 集合对象调用,拼接
 方法:toArray()
 args.toArray(); 集合对象调用:转成数组
+
+

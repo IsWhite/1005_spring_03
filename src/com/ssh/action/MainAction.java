@@ -63,6 +63,7 @@ public class MainAction extends ActionSupport implements ModelDriven<Student> {
 
         /*保存登录成功之后学生对象*/
         Map<String, Object> sessions = ActionContext.getContext().getSession();
+
         sessions.put("student", stu);
         return SUCCESS;
     }

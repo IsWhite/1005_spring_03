@@ -8,7 +8,7 @@ import org.springframework.orm.hibernate4.HibernateCallback;
 import java.util.List;
 
 /**
- * Created by  阿里巴巴 分页查询
+ * Created by   分页查询
  * 接口回调
  */
 public class PagerHibernateCallback<T> implements HibernateCallback<List<T>> {

@@ -1,4 +1,4 @@
-
+保存到session中
  方法:ActionContext.getContext().getSession()  getSession(Map<String, Object>)参数
  Map<String, Object> sessions = ActionContext.getContext().getSession();
 

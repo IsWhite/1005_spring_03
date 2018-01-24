@@ -8,4 +8,3 @@ Query query = session.createQuery(hql);  session调用
 
   query.list();
 
-

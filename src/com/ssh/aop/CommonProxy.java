@@ -28,7 +28,7 @@ public class CommonProxy implements InvocationHandler {
     public Object getProxyObject(Object srcObj) {
         target = srcObj;//目标对象赋值
 
-        return Proxy.newProxyInstance(                  //?
+        return Proxy.newProxyInstance(                  //译 新的代理实例
                 /*第一个参数,被代理类的类加载器*/
                 target.getClass().getClassLoader()
                 /*第二个参数,被代理类的类接口数组*/
