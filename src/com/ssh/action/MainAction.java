@@ -76,6 +76,7 @@ public class MainAction extends ActionSupport implements ModelDriven<Student> {
         return SUCCESS;
     }
 
+    /*分页 action方法*/
     /*获取学生列表 加入分页查询*/
     private  int pageNum=1;//当前页面
     private  int pageSize=3;//每页显示的条数

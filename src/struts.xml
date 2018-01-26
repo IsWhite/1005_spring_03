@@ -54,6 +54,7 @@
             </result>
         </action>
 
+
         <!--分页查询学生列表-->
         <action name="findStudent"
                 class="mainAction"

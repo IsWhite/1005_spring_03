@@ -77,7 +77,8 @@ public class StudentDaoImpl implements StudentDao {
     public int getTotalRecord(String sql, Object[] args) {
 
         String hql="select count(sid) from Student where 1=1 "+sql; //count 查列的条数
-        hibernateTemplate.find(hql,args);
+        //+sql是模糊查询用的,接收传来的sql语句
+
         /*返回符合条件的条数集合*/
         List<Long>  find = (List<Long>) hibernateTemplate.find(hql,args);
 
@@ -97,6 +98,7 @@ public class StudentDaoImpl implements StudentDao {
      * @param startIndex 查询的索引
      * @param pageSize 查询的条数,即每页显示的条数
      * @return
+     * execute是hiberbateTemplate的方法
      */
     @Override
     public List<Student> selectAll(String sql, Object[] args, int startIndex, int pageSize) {

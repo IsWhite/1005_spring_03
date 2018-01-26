@@ -15,8 +15,8 @@ public interface StudentService {
 
     List<Student> selectAll();
 
-    //以下分页
+    //模糊查询
     List<Student> select(Student student);//操作用对象实现
-
+    //分页
     PageBean<Student> selectAll(Student student,int pageNum,int pageSize);
 }

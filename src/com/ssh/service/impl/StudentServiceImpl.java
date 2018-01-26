@@ -102,19 +102,21 @@ public class StudentServiceImpl implements StudentService {
         params=args.toArray();
 
 
-        /*分页查询*/
+        /*分页查询 ,dao层两个方法整合成一个方法了*/
         int totalRecord =studentDao.getTotalRecord(condition,params);//获取符合条件的总条数
         /*创建分页对象*/
-        PageBean<Student> pageBean=new PageBean<>(pageNum,pageSize,totalRecord);
+        PageBean<Student> pageBean=new PageBean<>(totalRecord,pageNum,pageSize);
         /*查询符合条件的学生集合*/
         List<Student> students =studentDao.selectAll(
                 condition,params,
-                pageBean.getStartIndex(),
+                pageBean.getStartIndex(),//分页类提供的方法
                 pageBean.getPageSize());
 
         /*将集合设置到pageBean这个对象中*/
         pageBean.setBeanList(students);
 
         return pageBean;//将分页对象返回
+
     }
+
 }
