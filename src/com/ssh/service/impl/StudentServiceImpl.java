@@ -79,6 +79,8 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public PageBean<Student> selectAll(Student student, int pageNum, int pageSize) {
+        /*条件查询*/
+
         /*拼接参数*/
         String condition = "";//条件语句
         Object[] params = null;//参数列表
@@ -98,6 +100,7 @@ public class StudentServiceImpl implements StudentService {
         }
         /*将参数列表集合转换为数组*/
         params=args.toArray();
+
 
         /*分页查询*/
         int totalRecord =studentDao.getTotalRecord(condition,params);//获取符合条件的总条数

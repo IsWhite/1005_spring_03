@@ -9,18 +9,21 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
-    <!--引入数据库属性配置文件PropertyPlaceholderConfigurer-->
+    <!--1,数据库属性配置 PropertyPlaceholderConfigurer   PPC
+    ****属性配置~地址~db路径 PPC-->
+
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations"
                   value="classpath:db.properties"/>
     </bean>
-    <!--引入spring注解-->
+    <!--2spring环境-->
     <context:component-scan base-package="com.ssh"/>
 
     <!--使用第二种方式配置hibernate数据库的sessionFactory
     即,在spring的配置文件中定义数据库相关配置,此种方式就不需要单独的hibernate配置文件了-->
 
-    <!--1,配置dataSource:dbcp-->
+    <!--****3.基础数据来源(BasicD)~db内4个属性-->
+    <!--3,配置dataSource:dbcp-->
     <!--数据库驱动类: (访问数据库)
     4个属性driverClassName
           url
@@ -39,13 +42,14 @@
                   value="${password}"/>
     </bean>
 
-    <!--2,配置SessionFactory  数据库的工程类对象
-    LocalSession 译 本地的会话
-    prop  译 支持者-->
+    <!--***4.连接会话工厂类(Local)~参考:数据来源~
+    hibernate属性4个支柱:自动(auto),格式(format),展示(show),MySQL5D~
+    mapping连接-->
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <!--配置hibernate的可选项-->
+        <!--配置hibernate的可选项
+        -->
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
@@ -59,8 +63,8 @@
                   value="classpath*:mapping/*.hbm.xml"/>
     </bean>
 
-
-    <!--3,配置HibernateTemplate对象-->
+    <!--****5.hibernate模板(打HT)~参考:会话工厂 template模板 -->
+    <!--5,配置HibernateTemplate对象-->
     <bean id="hibernateTemplate"
           class="org.springframework.orm.hibernate4.HibernateTemplate">
         <!--引入SessionFactory-->
@@ -68,13 +72,15 @@
     </bean>
 
     <!--spring AOP编程配置  切入数据库事务-->
-    <!--4,配置事务对象,配置切面-->
+    <!--***6.切面编程(切入事务):hibernate事务管理(HibernateTM) transaction事务-->
+    <!--6,配置事务对象,配置切面-->
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
            <!--引入数据库连接工厂类对象-->
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <!--5,配置通知-->
+    <!--7,配置通知-->
+    <!--tx通知~属性* -->
     <tx:advice id="txAdvice"
                transaction-manager="transactionManager">
         <!--定义目标方法-->
@@ -83,7 +89,8 @@
         </tx:attributes>
     </tx:advice>
 
-    <!--6,配置aop-->
+    <!--8****aop配置~切入点,执行 ~ 顾问,参考:tx通知和切入点-->
+    <!--8,配置aop-->
     <aop:config>
         <!--配置切入点-->
         <!--切入的目标方法为service包及其包下的所有方法-->
@@ -92,6 +99,17 @@
         <aop:advisor advice-ref="txAdvice"
                      pointcut-ref="pointCut"/>
     </aop:config>
+    </beans>
 
 
-</beans>
+
+
+
+
+
+
+
+
+
+
+

@@ -9,6 +9,8 @@
     <constant name="struts.objectFactory" value="spring"/>
     <!--开启开发者模式,帮助错误的查询-->
     <constant name="struts.devMode" value="true"/>
+
+
     <package name="main" extends="json-default">
         <action name="getClazzAll"
                 class="mainAction"

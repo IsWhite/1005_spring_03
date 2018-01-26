@@ -66,6 +66,7 @@ public class StudentDaoImpl implements StudentDao {
         return (List<Student>) hibernateTemplate.find(sql,args);
     }
 
+    /*分页*/
     /*返回符合条件的总条数
     * @sql  查询语句
     * @args 查询语句对应的参数列表

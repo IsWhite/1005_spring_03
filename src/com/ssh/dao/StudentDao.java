@@ -17,7 +17,10 @@ public interface StudentDao {
 
     List<Student> select(String sql,Object[] args);
 
+
+
     //分页
     int getTotalRecord(String sql,Object[] args);
+
     List<Student> selectAll(String sql,Object[] args,int startIndex,int pageSize);
 }
